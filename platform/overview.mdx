@@ -1,0 +1,67 @@
+---
+title: "The Kepler platform"
+description: "Citation-backed financial research you can trust, and verify."
+---
+
+Kepler is an AI financial research agent built on a simple idea: an answer is only useful if you can prove it is right. The platform at [app.kepler.ai](https://app.kepler.ai) lets you ask a financial question in plain language and get an answer where every figure traces back to the filing or transcript it came from. The difference is between AI that is probably right and AI that is provably right.
+
+<Frame>
+  <img src="/images/hero.png" alt="The Kepler app home, where you ask financial research questions in natural language" />
+</Frame>
+
+## Why Kepler is built differently
+
+General-purpose AI tools generate answers probabilistically, so they can produce a confident number with no source behind it. Kepler is built the other way around. Language understanding is handled by AI; retrieving data and running calculations is handled by deterministic code. The two stay separate, so results are reproducible and every figure is traceable.
+
+<CardGroup cols={3}>
+  <Card title="Traceable" icon="link">
+    Every number traces to its source. Click a figure to see the exact filing, page, and line it came from.
+  </Card>
+  <Card title="Reproducible" icon="rotate">
+    The same question returns the same answer, because the data and the math are deterministic, not generated.
+  </Card>
+  <Card title="Auditable" icon="circle-check">
+    Each result reports how much of the answer is sourced, so you can verify before you rely on it.
+  </Card>
+</CardGroup>
+
+## How research works
+
+You work in a conversation. Ask a question or request a model, and Kepler starts a run: it finds the relevant filings and transcripts, extracts the numbers, and writes the result, streaming progress as it goes. A run takes a few minutes because Kepler reads primary sources rather than summarizing from memory. When it finishes, you get a cited answer, any workbooks it built, and a report on how much of the answer is sourced.
+
+## The main surfaces
+
+<CardGroup cols={2}>
+  <Card title="Research conversations" icon="comments" href="/platform/conversations">
+    Ask questions, watch live progress, and follow up in the same thread with full context.
+  </Card>
+  <Card title="Workbooks" icon="table-cells" href="/platform/workbooks">
+    Spreadsheet models where every cell traces to a source. Download as `.xlsx` or export a sheet as CSV.
+  </Card>
+  <Card title="Citations and sources" icon="quote-left" href="/platform/sources">
+    Trace any figure to its exact line in a filing, and check the sourcing report on coverage.
+  </Card>
+  <Card title="Teams and administration" icon="users" href="/platform/teams">
+    Organizations, members, and roles, with sign-in tied to your identity provider.
+  </Card>
+</CardGroup>
+
+## What Kepler reads
+
+Kepler works from primary sources rather than a model's memory. It draws on SEC filings (10-Ks, 10-Qs, 8-Ks, and proxy statements), earnings call transcripts, market data, news, and investor relations materials. Coverage starts with US public equities and expands from there. You can resolve a company by name, ticker, or SEC CIK, and confirm what is available instantly before a deep dive, no full run required.
+
+## Audit-ready outputs
+
+Results are built to leave Kepler and stand on their own. Model requests return workbooks you can download as Excel with formulas intact, and any sheet exports to CSV for downstream work. Every figure keeps its citation, so what you hand to a colleague or a committee is already traceable to source.
+
+## Built for finance teams
+
+Kepler is used by buy-side analysts, private equity, investment banking, equity research, hedge funds, and compliance and tax teams, the kind of work where a number has to be defensible. See [use cases](/platform/use-cases) for how different teams put it to work.
+
+## Two ways to use Kepler
+
+Everything here is also available through the [MCP connector](/mcp/overview), which brings the same research into AI assistants like Claude, ChatGPT, and Cursor. Runs are shared across both, so you can start in one and continue in the other. See [web app or connector](/mcp/app-vs-connector) for when to use which.
+
+<Card title="Run your first research" icon="rocket" href="/quickstart" horizontal>
+  Follow the quickstart to go from sign-in to your first cited answer.
+</Card>

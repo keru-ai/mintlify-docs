@@ -1,0 +1,35 @@
+---
+title: "Workbooks"
+description: "Spreadsheet models where every cell traces back to a source."
+---
+
+When you ask Kepler for a model, it returns a workbook: a spreadsheet built from primary sources where every cell traces back to the filing or transcript it came from. You can open it in the app, download it, or pull the raw data for your own tools.
+
+## Request a model
+
+Describe the statement type, periods, segments, and any formatting up front. Being specific is faster than reshaping a generic result afterward.
+
+```text
+Build a 3-year annual income statement for Apple, with each line cited to its 10-K.
+```
+
+<Frame caption="A finished workbook rendered in the conversation, with the sources Kepler used listed alongside.">
+  <img src="/images/workbook-result.png" alt="Apple income statement workbook built by Kepler, with sources and the answer summary" />
+</Frame>
+
+## Every cell is sourced
+
+A Kepler workbook is not a static export. Select a cell and trace its value back to the exact line in the filing it came from, the same auditability you get on figures in an answer. See [citations and sources](/platform/sources).
+
+## Get the data out
+
+<CardGroup cols={2}>
+  <Card title="Download as Excel" icon="file-excel">
+    Download the full workbook as an `.xlsx` file to open in Excel or Google Sheets.
+  </Card>
+  <Card title="Export a sheet as CSV" icon="file-csv">
+    Pull a single sheet as CSV for downstream analysis, with the full cell data beyond what is shown in the result.
+  </Card>
+</CardGroup>
+
+Through the [MCP connector](/mcp/overview), your assistant can fetch the same CSV data programmatically with [`get_workbook_data`](/mcp/tools#get_workbook_data).

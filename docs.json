@@ -23,6 +23,7 @@
     "groups": [
       {
         "group": "Documentation",
+        "public": true,
         "pages": [
           "index",
           "quickstart",
@@ -33,7 +34,19 @@
         ]
       },
       {
+        "group": "Kepler platform",
+        "pages": [
+          "platform/overview",
+          "platform/use-cases",
+          "platform/conversations",
+          "platform/workbooks",
+          "platform/sources",
+          "platform/teams"
+        ]
+      },
+      {
         "group": "MCP connector",
+        "public": true,
         "pages": [
           "mcp/overview",
           "mcp/app-vs-connector",
