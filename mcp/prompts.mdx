@@ -1,0 +1,43 @@
+---
+title: "Prompts"
+description: "Ready-made starting points for common research tasks."
+---
+
+The Kepler connector ships with a few **prompts** — pre-built starting points that some MCP clients surface as slash commands or quick actions. Pick one, fill in a company, and your assistant kicks off the right kind of run. You can always get the same results by asking in your own words; prompts are just a faster on-ramp.
+
+<Note>
+  How prompts appear depends on your client. In clients that support MCP prompts, they show up as selectable commands; in others, you can describe the same request in natural language.
+</Note>
+
+## Build a financial model
+
+A citation-backed spreadsheet model for a company — income statement, 3-statement, comps, and more — built from SEC filings and market data.
+
+| Argument | Required | Description |
+| --- | --- | --- |
+| `company` | Yes | Company name or ticker. |
+| `details` | No | What to build and how: statement type, periods, segments, formatting. Defaults to a 3-year annual income statement. |
+
+## Recap an earnings call
+
+A summary of a company's earnings call — results versus expectations, guidance, and notable management remarks — drawn from the transcript and the filed results.
+
+| Argument | Required | Description |
+| --- | --- | --- |
+| `company` | Yes | Company name or ticker. |
+| `period` | No | Fiscal period, e.g. `Q3 FY2026`. Defaults to the most recent call. |
+
+## Compare companies
+
+A side-by-side comparison of two or more companies on fundamentals, with every figure cited to its filing.
+
+| Argument | Required | Description |
+| --- | --- | --- |
+| `companies` | Yes | The companies to compare, e.g. `Netflix, Disney, Warner Bros. Discovery`. |
+| `focus` | No | What to compare on: metrics, periods, angle. Defaults to revenue growth, margins, and valuation over the last 3 fiscal years. |
+
+## Next steps
+
+<Card title="Example workflows" icon="lightbulb" href="/mcp/examples" horizontal>
+  See these prompts in action as full conversations.
+</Card>

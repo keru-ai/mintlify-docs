@@ -1,0 +1,108 @@
+---
+title: "Tools reference"
+description: "Every tool the Kepler connector exposes to your assistant."
+---
+
+The connector exposes a set of tools that your assistant calls on your behalf. You don't call these directly — you ask in natural language, and your assistant chooses the right tools and chains them together. This reference documents what each tool does so you understand what's happening and can guide your assistant when you want to.
+
+Because Kepler runs are asynchronous, the tools fall into a few groups: **start** a run, **wait** for its result, **manage** existing runs, and **look up** reference data without a run.
+
+## Run a research request
+
+### `run_financial_research`
+
+Start a new Kepler run. This is the entry point for any research question or model request.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `request` | string | Yes | The research question or artifact request in natural language. Include the company, periods, and any structure or formatting preferences. |
+
+Returns immediately with a `conversation_id` and a status of `running` — the run itself continues in the background. Your assistant then calls `get_run_result` to wait for the answer.
+
+### `continue_research`
+
+Send a follow-up into an existing conversation — refine a model, ask about prior results, or extend the research. The agent keeps full context from the earlier run.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `conversation_id` | string | Yes | The conversation to continue. |
+| `message` | string | Yes | The follow-up request in natural language. |
+
+Returns a conversation handle, the same shape as `run_financial_research`.
+
+## Wait for results
+
+### `get_run_result`
+
+Fetch a run's final result. It blocks while the run is still going and streams progress while it waits; finished runs return immediately. Your assistant calls this after starting or continuing a run.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `conversation_id` | string | Yes | The running conversation to wait on. |
+
+Returns the run `status` (`running`, `completed`, `failed`, or `access_denied`), the final `answer`, inline `citations`, `all_sources` consulted, any `workbooks` produced, and a `sourcing` report on citation coverage. A very long run may come back with status `running` — your assistant then calls `continue_waiting`.
+
+### `continue_waiting`
+
+Resume waiting after `get_run_result` returned `running`. Identical blocking behavior — used for follow-up waits on long runs.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `conversation_id` | string | Yes | The conversation to keep waiting on. |
+
+### `is_run_done`
+
+A one-shot, non-blocking check of whether a run has finished. Returns right away. This is a status check, not a polling loop — to actually get the result, use `get_run_result`.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `conversation_id` | string | Yes | The conversation to check. |
+
+Returns `done` (boolean) and the current `status`.
+
+## Manage runs
+
+### `cancel_run`
+
+Stop a running conversation. Non-destructive: the conversation and any partial results survive, and `continue_research` can re-engage it with full context. No effect on finished runs.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `conversation_id` | string | Yes | The running conversation to stop. |
+
+### `list_recent_runs`
+
+List your most recent Kepler conversations — useful for finding an earlier run (e.g. "the Netflix model from yesterday") to continue or fetch results from.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `limit` | integer | No | Maximum conversations to return. Default `10`, clamped to 1–25. |
+
+Returns a list of `runs`, newest first, each with a `conversation_id`, `title`, and timestamps.
+
+## Look up reference data
+
+### `lookup_company`
+
+Resolve a company and list the SEC filings and earnings-call transcripts Kepler has on file. Instant — no run required. Answers questions like "is the Q3 call available?", "when did they last file a 10-K?", or "does Kepler cover this company?".
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `company` | string | Yes | Company name, ticker symbol, or SEC CIK. |
+| `form_types` | string | No | Comma-separated SEC form filter, e.g. `"10-K,10-Q"`. |
+| `limit` | integer | No | Maximum filings and transcripts to list. Default `10`. |
+
+Returns the resolved `company`, any `other_matches`, available `filings` (form type, filed date, fiscal period), and `transcripts`. Metadata only — for the contents of a filing, run a research request.
+
+### `get_workbook_data`
+
+Get the full cell data of one workbook sheet as CSV (RFC 4180), for downstream analysis beyond the tables shown in a result. Omit `sheet_name` to list a multi-sheet workbook's sheets.
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+| `workbook_id` | string | Yes | Workbook id from a run result. |
+| `sheet_name` | string | No | Sheet to export (case-insensitive). Optional when the workbook has a single sheet. |
+
+<Note>
+  Tool names, parameters, and behavior are set by the connector and may evolve. Your assistant always sees the current definitions when it connects, so you don't need to track changes yourself.
+</Note>

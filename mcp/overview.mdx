@@ -1,0 +1,69 @@
+---
+title: "Kepler MCP connector"
+description: "Bring citation-backed financial research into any MCP client."
+---
+
+The Kepler MCP connector lets AI assistants such as Claude, ChatGPT, and Cursor run Kepler research on your behalf. Ask a financial question or request a model from inside any conversation, and your assistant calls Kepler — returning the same citation-backed answers and spreadsheet workbooks you'd get in the [Kepler app](https://app.kepler.ai), with every figure linked to its source.
+
+[Model Context Protocol (MCP)](https://modelcontextprotocol.io) is an open standard for connecting AI assistants to external tools and data. Kepler runs a remote MCP server you add to your client once; after that, your assistant can reach Kepler's research tools whenever a conversation calls for them.
+
+<Card title="Connect your client" icon="link" href="/mcp/connect" horizontal>
+  Add the connector to Claude, ChatGPT, Cursor, or any MCP client.
+</Card>
+
+## How it works
+
+When you ask your assistant something like *"Use Kepler to build a 3-statement model for Apple,"* the assistant calls a Kepler tool over the connector. Kepler reads the primary sources — SEC filings (XBRL), earnings call transcripts, and market data — runs the research, and streams progress back into your conversation. A run usually takes a few minutes; the final answer arrives with inline citations, and any workbook is one click away.
+
+Because runs are asynchronous, the connector splits work across a few tools: one to **start** a run, one to **wait** for the result, and others to **continue**, **list**, or **look up** data. Your assistant orchestrates these for you — see the [tools reference](/mcp/tools) for the full set.
+
+## What you get
+
+<CardGroup cols={2}>
+  <Card title="Citation-backed answers" icon="quote-left">
+    Every figure links to the filing or transcript it came from, with a sourcing report on coverage.
+  </Card>
+  <Card title="Spreadsheet workbooks" icon="table-cells">
+    Model requests return downloadable `.xlsx` workbooks. Export any sheet as CSV for downstream analysis.
+  </Card>
+  <Card title="Live progress" icon="bars-progress">
+    Long runs stream narration into your conversation, so you can see what Kepler is reading.
+  </Card>
+  <Card title="Your own data, your own login" icon="shield-check">
+    The connector signs in as you over OAuth and is scoped to your own conversations.
+  </Card>
+</CardGroup>
+
+## Connector details
+
+| | |
+| --- | --- |
+| **Connector URL** | `https://mcp.kepler.ai/api/mcp` |
+| **Transport** | Streamable HTTP (JSON-RPC 2.0) |
+| **Authentication** | OAuth 2.1 — you sign in with your Kepler account |
+| **Access** | Enabled per account; see [access](#access) below |
+
+## Access
+
+MCP access is rolled out per account. If your client reports that access isn't enabled after you sign in, your Kepler contact may still need to turn it on for you — once granted, sign out of Kepler and back in so your session picks up the change.
+
+<Note>
+  Kepler covers publicly listed companies through their SEC filings and earnings call transcripts. The connector works with the same coverage as the Kepler app.
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Connect a client" icon="link" href="/mcp/connect">
+    Step-by-step setup for Claude, ChatGPT, Cursor, and more.
+  </Card>
+  <Card title="Tools reference" icon="wrench" href="/mcp/tools">
+    Every tool the connector exposes, with parameters and returns.
+  </Card>
+  <Card title="Prompts" icon="message-lines" href="/mcp/prompts">
+    Ready-made starting points for models, recaps, and comparisons.
+  </Card>
+  <Card title="Example workflows" icon="lightbulb" href="/mcp/examples">
+    Real conversations that show the connector end to end.
+  </Card>
+</CardGroup>
