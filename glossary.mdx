@@ -1,0 +1,50 @@
+---
+title: "Glossary"
+description: "Key Kepler terms, defined once."
+---
+
+A quick reference for the terms used across these docs.
+
+## Kepler
+
+The AI financial research agent. Kepler reads primary sources, extracts the numbers, and returns answers and models where every figure is backed by a citation. Use it in the [Kepler app](https://app.kepler.ai) or through the [MCP connector](/mcp/overview).
+
+## Primary sources
+
+The documents Kepler reads to answer a question — SEC filings (XBRL), earnings call transcripts, and market data. Kepler works from these directly rather than summarizing from memory, which is what makes every figure auditable.
+
+## Citation
+
+A link from a figure in an answer back to the exact filing or transcript it came from. Open a citation to trace a number to its source. Citations are Kepler's core value — results are auditable through these links.
+
+## Sourcing report
+
+The coverage summary included with each result. It shows what was cited and what wasn't, so you can see how much of an answer is backed by sources.
+
+## Run
+
+A single research execution. You ask a question, Kepler reads the relevant sources and builds the result, and the run completes — typically in a few minutes. A run is where the work happens.
+
+## Conversation
+
+An ongoing thread that can hold one or more runs. Follow-ups stay in the same conversation, so Kepler keeps full context from earlier runs. Through the connector, a conversation is identified by a `conversation_id`.
+
+## Workbook
+
+A spreadsheet artifact Kepler produces for model requests. Every cell traces back to a source. You can open a workbook in the app, download it as `.xlsx`, or export a sheet as CSV.
+
+## Connector
+
+The Kepler MCP integration. The connector is a remote MCP server you add to an AI assistant once; after that, your assistant can call Kepler's research tools from any conversation. See [the MCP connector docs](/mcp/overview).
+
+## MCP
+
+[Model Context Protocol](https://modelcontextprotocol.io) — an open standard for connecting AI assistants to external tools and data. Kepler exposes its research as an MCP server so clients like Claude, ChatGPT, and Cursor can use it.
+
+## Prompt
+
+A pre-built starting point the connector ships with — surfaced as a slash command or quick action in some MCP clients. Prompts are a faster on-ramp to common tasks; you can always ask in your own words instead. See [Prompts](/mcp/prompts).
+
+## Coverage
+
+The set of companies and documents Kepler can research — publicly listed companies through their SEC filings and earnings call transcripts. Check coverage for a specific company with the [`lookup_company`](/mcp/tools#lookup_company) tool, which answers instantly without a run.
