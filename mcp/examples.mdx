@@ -1,0 +1,72 @@
+---
+title: "Example workflows"
+description: "See the Kepler connector end to end in real conversations."
+---
+
+These examples show how a conversation flows once the connector is set up. You ask in natural language; your assistant calls the right Kepler [tools](/mcp/tools) and brings back cited results. The tool names below are shown only to make the mechanics clear — you never type them.
+
+## Ask a research question
+
+<Steps>
+  <Step title="You ask">
+    > Use Kepler to explain what drove Costco's gross margin over the last three fiscal years.
+  </Step>
+  <Step title="Kepler starts a run">
+    Your assistant calls `run_financial_research` and gets back a `conversation_id`. It then calls `get_run_result` to wait, streaming progress as Kepler reads the 10-K filings.
+  </Step>
+  <Step title="You get a cited answer">
+    A few minutes later the answer arrives, with each margin figure linked to the filing it came from and a sourcing report on coverage.
+  </Step>
+  <Step title="You follow up">
+    > Now compare that to Walmart for the same period.
+
+    Your assistant calls `continue_research` on the same conversation — Kepler keeps full context and extends the analysis.
+  </Step>
+</Steps>
+
+## Build a model and export it
+
+<Steps>
+  <Step title="You ask">
+    > Use Kepler to build a 3-year annual income statement for Apple, each line cited to its 10-K.
+  </Step>
+  <Step title="Kepler returns a workbook">
+    The result includes a workbook with a download link and an in-app link. Every cell traces back to a source.
+  </Step>
+  <Step title="You pull the data">
+    > Give me the income statement sheet as CSV.
+
+    Your assistant calls `get_workbook_data` and returns the full sheet as CSV for use in your own tools.
+  </Step>
+</Steps>
+
+## Check coverage before a deep dive
+
+Availability questions don't need a full run — they return instantly through `lookup_company`.
+
+> Use Kepler to check whether Nvidia's latest 10-K and Q3 earnings call are available.
+
+Your assistant lists the filings and transcripts Kepler has on file, with forms, dates, and fiscal periods — a quick way to confirm coverage before asking for analysis.
+
+## Pick up an earlier run
+
+> Find the Netflix model I built yesterday and add a fiscal 2025 column.
+
+Your assistant calls `list_recent_runs` to locate the conversation, then `continue_research` to extend it — no need to start over.
+
+## Tips for better results
+
+<AccordionGroup>
+  <Accordion title="Name the company and the periods">
+    "Apple's last three fiscal years" beats "Apple recently." Specific periods give Kepler a clear target and make citations easier to verify.
+  </Accordion>
+  <Accordion title="Say what structure you want">
+    For models, describe the statement type, segments, and formatting up front — it's faster than reshaping afterward.
+  </Accordion>
+  <Accordion title="Expect runs to take a few minutes">
+    Kepler reads primary sources rather than summarizing from memory. The wait is the work; your assistant streams progress while it goes.
+  </Accordion>
+  <Accordion title="Keep the thread going">
+    Follow-ups stay in the same conversation, so Kepler remembers prior results. Start a new request only when you switch topics.
+  </Accordion>
+</AccordionGroup>

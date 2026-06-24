@@ -2,32 +2,33 @@
 > For Mintlify product knowledge (components, configuration, writing standards),
 > install the Mintlify skill: `npx skills add https://mintlify.com/docs`
 
-# Documentation project instructions
+# Kepler documentation project instructions
 
 ## About this project
 
-- This is a documentation site built on [Mintlify](https://mintlify.com)
-- Pages are MDX files with YAML frontmatter
+- This is the public documentation site for **Kepler**, an AI financial research agent
+- Built on [Mintlify](https://mintlify.com); pages are MDX files with YAML frontmatter
 - Configuration lives in `docs.json`
-- Use the Mintlify MCP server, `https://mcp.mintlify.com`, to edit content and settings via MCP
-- Use the Mintlify docs MCP server, `https://www.mintlify.com/docs/mcp`, to query information about using Mintlify via MCP
+- The current focus is the **MCP connector** docs under `mcp/` — these are the real, source-backed docs
+- The connector implementation lives in the monorepo at `crud-service/crates/server/src/api/mcp/`; treat that code as the source of truth for tool names, parameters, and the connector URL
+- Brand assets (`logo/`, `favicon.svg`) come from `forge/packages/kepler-app/public/` in the monorepo
 
 ## Terminology
 
-{/* Add product-specific terms and preferred usage */}
-{/* Example: Use "workspace" not "project", "member" not "user" */}
+- The product is **Kepler** (not "Pluto" — that's an internal/test environment name)
+- Say **connector** for the MCP integration, **run** for a research execution, **conversation** for an ongoing thread, **workbook** for a spreadsheet artifact
+- The production app is at `app.kepler.ai`; the MCP connector URL is `https://mcp.kepler.ai/api/mcp`
 
 ## Style preferences
-
-{/* Add any project-specific style rules below */}
 
 - Use active voice and second person ("you")
 - Keep sentences concise — one idea per sentence
 - Use sentence case for headings
 - Bold for UI elements: Click **Settings**
 - Code formatting for file names, commands, paths, and code references
+- Lead with citations/auditability — it's Kepler's core value
 
 ## Content boundaries
 
-{/* Define what should and shouldn't be documented */}
-{/* Example: Don't document internal admin features */}
+- Document only public, user-facing behavior — not internal infrastructure, env vars, feature-flag plumbing, or app-only tools (e.g. `read_run_state`)
+- Don't hardcode anything that's likely to drift; when in doubt, point users to the in-app **MCP** page for the live connector URL

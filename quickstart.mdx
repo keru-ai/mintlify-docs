@@ -1,47 +1,57 @@
 ---
 title: "Quickstart"
-description: "Begin with a guide on the fastest path to a successful outcome"
+description: "From zero to your first citation-backed answer."
 ---
 
-Describe how someone begins using your product. What is the first thing they need to do? Are there any prerequisites?
-
-A quickstart should take someone from zero to using your product. They'll get a quick win and a sense of what they can accomplish.
+This guide takes you from signing in to reading your first sourced result. You can use Kepler in two ways: directly in the web app, or through the [MCP connector](/mcp/overview) inside an AI assistant like Claude. This quickstart uses the web app.
 
 ## Prerequisites
 
-Before you begin, you must have:
+- A Kepler account. If you don't have one, reach out to your Kepler contact for access.
+- A company you want to research — a name (`Netflix`), a ticker (`NFLX`), or an SEC CIK.
 
-- Requirement one (for example, Node.js 18+, a free account, an API key)
-- Requirement two (for example, a compatible device, a compatible browser, a compatible operating system)
-
-## Get started
+## Run your first research
 
 <Steps>
-  <Step title="Install">
-    Describe how to install your product or sign up.
+  <Step title="Sign in">
+    Open [app.kepler.ai](https://app.kepler.ai) and sign in with your Kepler account.
+  </Step>
+  <Step title="Ask a question">
+    In the chat, ask a financial research question in plain language. Be specific about the company and the periods you care about.
 
-    ```bash
-    npm install your-package
+    ```text
+    What drove the change in Costco's gross margin over the last three fiscal years?
     ```
   </Step>
-  <Step title="Configure">
-    Describe any setup or configuration needed before first use.
-
-    ```bash
-    your-cli init
-    ```
+  <Step title="Let Kepler work">
+    Kepler finds the relevant filings and transcripts, extracts the figures, and writes an answer. A run typically takes a few minutes — you'll see live progress as it reads sources and builds results.
   </Step>
-  <Step title="Run it">
-    Show the first thing a user does to see it working.
-
-    ```bash
-    your-cli start
-    ```
+  <Step title="Read the answer and check the sources">
+    Every figure in the answer links back to the filing or transcript it came from. Open a citation to see the original source, and review the sourcing report to confirm coverage.
   </Step>
 </Steps>
 
-<Tip>
-  Give people a way to get help. This could be a link to a support page, a chat with a customer support agent, or a forum for your product.
+## Ask for a model
 
-  Example: Need help? Reach out to us at [support@yourcompany.com](mailto:support@yourcompany.com).
+Kepler can return a spreadsheet workbook, not just prose. Try:
+
+```text
+Build a 3-year annual income statement for Apple, with each line cited to its 10-K.
+```
+
+The result includes a workbook you can open in the app or download as `.xlsx`. Every cell traces back to a source.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Use Kepler in your assistant" icon="plug" href="/mcp/overview">
+    Bring Kepler into Claude, ChatGPT, or Cursor with the MCP connector.
+  </Card>
+  <Card title="Connect a client" icon="link" href="/mcp/connect">
+    Step-by-step setup for each MCP client.
+  </Card>
+</CardGroup>
+
+<Tip>
+  Need help or access? Reach out to your Kepler contact, or email [support@kepler.ai](mailto:support@kepler.ai).
 </Tip>
